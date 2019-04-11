@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Node web chat</title>
+    <title>Fattylee web chat</title>
     <link href="/img/59x44.jpg" rel='shortcut icon'>
        <script src="eruda/eruda.min.js"></script>
      <script>eruda.init();</script>
@@ -12,6 +12,10 @@
 <script src="eruda-dom/eruda-dom.js"></script>
 <script>eruda.add(erudaDom)</script>
   <style>
+     body {
+       background: #42C2EB;
+       color: white;
+     }
     .code-sample {
       background: black;
       color: white;
@@ -40,6 +44,14 @@
      .copy-code-sample:hover {
        border: solid 1px white;
      }
+    .manual-body {
+      font-size: 0.7em;
+      padding: 10px;
+      background: black;
+    }
+    code {
+      color: red;
+    }
      
   </style>
   </head>
@@ -57,6 +69,10 @@
     console.log('message sent!');
     
     </textarea >
+    <p>Guide</p>
+    <p class="manual-body">Click on the wheel-spanner icon to see the <code>console</code>.<br>
+      On the <code>code</code> tab you can paste the code sample you copied above and click run to broadcast a message to other users on the chat room. Have fun guys!
+    </p>
     <button class="copy-code-sample">Copy</button>
     </div>
     <script src="js/copy-to-clipboard.js"></script>
