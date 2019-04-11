@@ -27,7 +27,6 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('newMessage', payload);
   });
   
-  
 });
 
 const port = process.env.PORT || 5000;

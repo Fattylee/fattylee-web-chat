@@ -10,12 +10,55 @@
 <script>eruda.add(erudaCode)</script>
 <script src="eruda-dom/eruda-dom.js"></script>
 <script>eruda.add(erudaDom)</script>
-
+  <style>
+    .code-sample {
+      background: black;
+      color: white;
+      padding: 20px 0px ;
+      border: solid 1px red;
+      display: block;
+      width: 100%;
+      height: 120px;
+      box-sizing: border-box;
+    }
+    .container {
+      position: relative;
+    }
+    .copy-code-sample {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 0.8em;
+      padding: 5px 7px;
+      BACKground: purple;
+      color: white;
+      outline: none;
+      border: none;
+      
+    }
+     .copy-code-sample:hover {
+       border: solid 1px white;
+     }
+     
+  </style>
   </head>
   <body>
     <h1>Welcome to my web-chat</h1>
     <p><span>Author:</span> Fattylee hackz</p>
+    <h2>Code sample</h2>
     
+    <div class="container">
+    <textarea readonly class="code-sample">
+    socket.emit('createMessage', {
+      from: 'fattylee',
+      text: 'Hey guys, how is it going?'
+    });
+    console.log('message sent!');
+    
+    </textarea >
+    <button class="copy-code-sample">Copy</button>
+    </div>
+    <script src="js/copy-to-clipboard.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/index.js"></script>
   </body>
