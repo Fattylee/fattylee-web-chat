@@ -23,10 +23,13 @@ io.on('connection', (socket) => {
   
   socket.on('createMessage', ({from, text}, receipt) => {
     io.emit('newMessage', generateMessage(from, text));
-    //socket.broadcast.emit('newMessage', generateMessage(payload.from, payload.text));
     if(receipt)
     receipt('server: message sent');
   });
+  
+  socket.on('createLocation', ({latitude, longitude}) => {
+    io.emit('newMessage', generateMessage('User', `geolocation is (${latitude}, ${longitude})`));
+  })
   
 });
 
