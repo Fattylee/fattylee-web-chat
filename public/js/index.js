@@ -36,7 +36,18 @@ socket.on('newMessage', ({from, text}) => {
   ol.innerHTML += li;
 });
 
-
+socket.on('newLocationMessage', ({from, url, createdAt}) => {
+  const li = document.createElement('li');
+  const a = document.createElement('a');
+  ol.appendChild(li);
+  const liText = document.createTextNode(from + ': ');
+  li.appendChild(liText);
+  li.appendChild(a);
+  const aText = document.createTextNode('Show current location');
+  a.appendChild(aText);
+  a.setAttribute('target', '_blank');
+  a.setAttribute('href', url);
+})
 
 buttonLocation.addEventListener('click', (event) => {
   if(!navigator.geolocation) return alert('Your browser does not not support geolocation');
@@ -50,5 +61,4 @@ buttonLocation.addEventListener('click', (event) => {
     buttonLocation.removeAttribute('disabled');
     console.error('error:', error);
   });
-  
 });
