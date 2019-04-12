@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTbbYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -11,53 +11,18 @@
 <script>eruda.add(erudaCode)</script>
 <script src="eruda-dom/eruda-dom.js"></script>
 <script>eruda.add(erudaDom)</script>
-  <style>
-     body {
-       background: #42C2EB;
-       color: white;
-     }
-    .code-sample {
-      background: black;
-      color: white;
-      padding: 20px 0px ;
-      border: solid 1px red;
-      display: block;
-      width: 100%;
-      height: 120px;
-      box-sizing: border-box;
-    }
-    .container {
-      position: relative;
-    }
-    .copy-code-sample {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 0.8em;
-      padding: 5px 7px;
-      BACKground: purple;
-      color: white;
-      outline: none;
-      border: none;
-      
-    }
-     .copy-code-sample:hover {
-       border: solid 1px white;
-     }
-    .manual-body {
-      font-size: 0.7em;
-      padding: 10px;
-      background: black;
-    }
-    code {
-      color: red;
-    }
-     
-  </style>
+<link href="css/style.css" rel="stylesheet" /b>
   </head>
   <body>
+    <div class="body-container">
     <h1>Welcome to my web-chat</h1>
     <p><span>Author:</span> Fattylee hackz</p>
+    
+    <ol id="messages"></ol>
+    <form id="chat">
+      <input name="message" type="text" placeholder="Type a message"/>
+      <button>Send</button>
+    </form>
     <h2>Code sample</h2>
     
     <div class="container">
@@ -69,12 +34,18 @@
     console.log('message sent!');
     
     </textarea >
-    <p>Guide</p>
+    <p>Dev Guide</p>
     <p class="manual-body">Click on the wheel-spanner icon to see the <code>console</code>.<br>
       On the <code>code</code> tab you can paste the code sample you copied above and click <code>Run</code> to broadcast a message to other users on the chat room. Have fun guys!
     </p>
     <button class="copy-code-sample">Copy</button>
     </div>
+    </div>
+    
+    <div class="footer">
+      Created by Fattylee, Copyright &copy; <script>document.write(new Date().getFullYear())</script>
+    </div>
+    
     <script src="js/copy-to-clipboard.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/index.js"></script>

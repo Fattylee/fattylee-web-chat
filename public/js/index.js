@@ -8,16 +8,30 @@ socket.on('disconnect', () => {
   console.log('disconnected from server, ure now offline');  
 });
 
-socket.on('newMessage', (payload) => {
-  console.log('newMessage', payload);
-});
 
-socket.emit('createMessage', {
-      from: 'fattylee',
-      text: 'Hey guys, how is it going?'
+    
+const form = document.querySelector('#chat');
+const textBox = document.querySelector('#chat input');
+const ol = document.querySelector('#messages');
+
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  
+  
+  socket.emit('createMessage', {
+      from: 'User',
+      text: textBox.value,
     }, (serverMssg) => {
       console.log(serverMssg)
     });
-    console.log('message sent!');
     
+  textBox.value = '';
+});
+
+socket.on('newMessage', ({from, text}) => {
+  console.log('newMessage', from, text);
+  const li = `<li>${from}: ${text}</li>`;
+  ol.innerHTML += li;
+});
     
