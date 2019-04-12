@@ -21,9 +21,9 @@ io.on('connection', (socket) => {
   socket.emit('newMessage', generateMessage('admin', 'welcome to the chat room'));
   socket.broadcast.emit('newMessage', generateMessage('admin', 'a new user just joined the chat room'));
   
-  socket.on('createMessage', (payload, receipt) => {
-    //io.emit('newMessage', payload);
-    socket.broadcast.emit('newMessage', generateMessage(payload.from, payload.text));
+  socket.on('createMessage', ({from, text}, receipt) => {
+    io.emit('newMessage', generateMessage(from, text));
+    //socket.broadcast.emit('newMessage', generateMessage(payload.from, payload.text));
     if(receipt)
     receipt('server: message sent');
   });
