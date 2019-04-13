@@ -1,4 +1,4 @@
-<!DOCTbbYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -11,42 +11,26 @@
 <script>eruda.add(erudaCode)</script>
 <script src="eruda-dom/eruda-dom.js"></script>
 <script>eruda.add(erudaDom)</script>
-<link href="css/style.css" rel="stylesheet" /b>
+<link href="css/chat.css" rel="stylesheet" />
   </head>
-  <body>
-    <div class="body-container">
-    <h1>Welcome to my web-chat app</h1>
-    
-    <ol id="messages"></ol>
-    <form id="chat">
-      <input name="message" type="text" placeholder="Type a message"/>
+  
+  <body class="chat">
+    <div class="chat__sidebar">
+      <h3>People</h3>
+      <div id="users"></div>
+    </div>
+    <div class="chat__main">
+      <ol id="messages" class="chat__messages"></ol>
+      <div class="chat__footer">
+        <form id="chat">
+      <input name="message" type="text" placeholder="Type a message" autofocus="" autocomplete="off"/>
       <button>Send</button>
     </form>
-    <button id="location">Send Location</button>
-    <h2>Code sample</h2>
-    
-    <div class="container">
-    <textarea readonly class="code-sample">
-    socket.emit('createMessage', {
-      from: 'fattylee',
-      text: 'Hey guys, how is it going?'
-    });
-    console.log('message sent!');
-    
-    </textarea >
-    <p>Dev Guide</p>
-    <p class="manual-body">Click on the wheel-spanner icon to see the <code>console</code>.<br>
-      On the <code>code</code> tab you can paste the code sample you copied above and click <code>Run</code> to broadcast a message to other users on the chat room. Have fun guys!
-    </p>
-    <button class="copy-code-sample">Copy</button>
-    </div>
+    <button id="location">Send location</button>
+      </div>
     </div>
     
-    <div class="footer">
-      Created by Fattylee, Copyright &copy; <script>document.write(new Date().getFullYear())</script>
-    </div>
     
-    <script src="js/copy-to-clipboard.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/index.js"></script>
   </body>
