@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fattylee web chat</title>
+    <link href="/img/59x44.jpg" rel='shortcut icon'>
+       <script src="eruda/eruda.min.js"></script>
+     <script>eruda.init();</script>
+    <script src="eruda-code/eruda-code.min.js"></script>
+<script>eruda.add(erudaCode)</script>
+<script src="eruda-dom/eruda-dom.js"></script>
+<script>eruda.add(erudaDom)</script>
+<link href="css/style.css" rel="stylesheet" /b>
+  </head>
+  <body>
+    <div class="body-container">
+    <h1>Welcome to my web-chat app</h1>
+    
+    <ol id="messages"></ol>
+    <form id="chat">
+      <input name="message" type="text" placeholder="Type a message"/>
+      <button>Send</button>
+    </form>
+    <button id="location">Send Location</button>
+    <h2>Code sample</h2>
+    
+    <div class="container">
+    <textarea readonly class="code-sample">
+    socket.emit('createMessage', {
+      from: 'fattylee',
+      text: 'Hey guys, how is it going?'
+    });
+    console.log('message sent!');
+    
+    </textarea >
+    <p>Dev Guide</p>
+    <p class="manual-body">Click on the wheel-spanner icon to see the <code>console</code>.<br>
+      On the <code>code</code> tab you can paste the code sample you copied above and click <code>Run</code> to broadcast a message to other users on the chat room. Have fun guys!
+    </p>
+    <button class="copy-code-sample">Copy</button>
+    </div>
+    </div>
+    
+    <div class="footer">
+      Created by Fattylee, Copyright &copy; <script>document.write(new Date().getFullYear())</script>
+    </div>
+    
+    <script src="js/copy-to-clipboard.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

@@ -23,11 +23,10 @@ form.addEventListener('submit', (event) => {
   socket.emit('createMessage', {
       from: 'User',
       text: textBox.value,
-    }, (serverMssg) => {
-      console.log(serverMssg)
+    }, () => {
+      textBox.value = '';
     });
     
-  textBox.value = '';
 });
 
 socket.on('newMessage', ({from, text}) => {
@@ -50,15 +49,17 @@ socket.on('newLocationMessage', ({from, url, createdAt}) => {
 })
 
 buttonLocation.addEventListener('click', (event) => {
-  if(!navigator.geolocation) return alert('Your browser does not not support geolocation');
+  if(!navigator.geolocation) return alert('Your browser does not support geolocation');
   buttonLocation.setAttribute('disabled', '');
+  buttonLocation.textContent = 'Sending location...';
   navigator.geolocation.getCurrentPosition((pos) => {
     buttonLocation.removeAttribute('disabled');
+    buttonLocation.textContent = 'Send location';
     const { coords: {latitude}, coords: {longitude}} = pos;
-    console.log('my latitude & longitude:', latitude, longitude);
     socket.emit('createLocation', {latitude, longitude});
   }, (err) => {
     buttonLocation.removeAttribute('disabled');
-    console.error('error:', error);
+    buttonLocation.textContent = 'Send location';
+    alert('Unable to fetch location');
   });
 });
