@@ -29,23 +29,26 @@ form.addEventListener('submit', (event) => {
     
 });
 
-socket.on('newMessage', ({from, text}) => {
-  console.log('newMessage', from, text);
-  const li = `<li>${from}: ${text}</li>`;
-  ol.innerHTML += li;
+socket.on('newMessage', ({from, text, createdAt}) => {
+  const template = document.querySelector('#message-template').innerHTML; Mustache.parse(template); // optional, speeds up future uses 
+  const rendered = Mustache.render(template, {
+    from,
+    text,
+    createdAt: moment(createdAt).format('h:mm a'),
+  }); 
+  ol.innerHTML += rendered;
 });
 
 socket.on('newLocationMessage', ({from, url, createdAt}) => {
-  const li = document.createElement('li');
-  const a = document.createElement('a');
-  ol.appendChild(li);
-  const liText = document.createTextNode(from + ': ');
-  li.appendChild(liText);
-  li.appendChild(a);
-  const aText = document.createTextNode('Show current location');
-  a.appendChild(aText);
-  a.setAttribute('target', '_blank');
-  a.setAttribute('href', url);
+  
+  const formattedTime = moment(createdAt).format('h:mm a');
+  const template = document.querySelector('#location-message-template').innerHTML; Mustache.parse(template); // optional, speeds up future uses 
+  const rendered = Mustache.render(template, {
+    from,
+    url,
+    createdAt: formattedTime,
+  }); 
+  ol.innerHTML += rendered;
 })
 
 buttonLocation.addEventListener('click', (event) => {
