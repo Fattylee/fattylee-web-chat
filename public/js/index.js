@@ -1,7 +1,6 @@
 const socket = io();
 socket.on('connect', () => {
   console.log('connected to server');
-  
 });
 
 socket.on('disconnect', () => {
@@ -14,6 +13,27 @@ const form = document.querySelector('#chat');
 const textBox = document.querySelector('#chat input');
 const ol = document.querySelector('#messages');
 const buttonLocation = document.querySelector('#location');
+
+
+const scrollToBottom = () => {
+  
+  const textMessage = $('#messages');
+  const children = textMessage.children();
+  const lastMessage = children.filter('li:last');
+  const secondBeforeLast = lastMessage.prev();
+  
+  const scrollHeight = textMessage.prop('scrollHeight');
+  
+  const scrollTop = textMessage.prop('scrollTop');
+  const clientHeight = textMessage.prop('clientHeight');
+  const sbl =  secondBeforeLast.prop('clientHeight');
+  const lm = lastMessage.prop('clientHeight');
+  
+  if( (scrollTop + clientHeight + sbl + lm) > scrollHeight ) {
+    textMessage.scrollTop(scrollHeight);
+  }
+  
+};
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -37,6 +57,7 @@ socket.on('newMessage', ({from, text, createdAt}) => {
     createdAt: moment(createdAt).format('h:mm a'),
   }); 
   ol.innerHTML += rendered;
+  scrollToBottom();
 });
 
 socket.on('newLocationMessage', ({from, url, createdAt}) => {
@@ -49,6 +70,7 @@ socket.on('newLocationMessage', ({from, url, createdAt}) => {
     createdAt: formattedTime,
   }); 
   ol.innerHTML += rendered;
+  scrollToBottom();
 })
 
 buttonLocation.addEventListener('click', (event) => {
