@@ -115,5 +115,6 @@ $(function(){
   var counter=0;
   $('.addContent').click(function(){
     $('.inner').append('<div style="height: 20px">content here '+ ++counter +'</div>');
-  })
+  });
+  console.log('outerElem', outerElem);
 });

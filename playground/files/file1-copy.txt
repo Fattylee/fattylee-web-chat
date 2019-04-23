@@ -1,0 +1,1 @@
+On line A we define the for-loop. And on line B we await on the result of fs.readFile and we assign it to the content variable. Finally, on line C, we log the content to the console. Let's replace the log statement with an actual write-to-file operation:

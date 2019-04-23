@@ -1,0 +1,3 @@
+In the snippet above, first we require the fs-extra module that has all the promise-based versions of the fs methods. Then, we define the main async function as the entry point of the program. We also define an array that contains the hard-coded paths to the files that we are going to be reading from.
+
+Next, we are going to write a for-loop that goes through the file paths and reads the contents of each file:
