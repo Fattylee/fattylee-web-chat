@@ -1,0 +1,429 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fattylee Flex Regex</title>
+    <link href="../public/img/59x44.jpg" rel='shortcut icon'>
+    <script src="../public/eruda/eruda.min.js"></script>
+    <script>eruda.init();</script>
+    <script src="../public/eruda-code/eruda-code.min.js"></script>
+    <script>eruda.add(erudaCode)</script>
+    <script src="../public/eruda-dom/eruda-dom.js"></script>
+    <script>eruda.add(erudaDom)</script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+    body {
+    BACKGROUND: grey ;
+    
+    }
+
+      .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-flow: row ;
+        height : 700px ;
+        justify-content: space-around ;
+      }
+      .flex-item {
+        flex: 0 0 100px;
+        height: 100px;
+      }
+      .one {
+        background: blue;
+        }
+      .two {
+        background: green;
+        }
+      .three {
+        background: cyan;
+        flex-basis: 100px;
+      }
+      nav {
+      background : #333;
+      margin-bottom: 20px ;
+      }
+      nav ul {
+      list-type: none ;
+      padding : 0;
+      margin:0  ;
+      }
+      
+      nav a {
+      Color: white;
+      text-decoration: none ;
+      display : block ;
+      padding :5px ;
+      background : brown ;
+      text-align : center;
+      transition: 0.5s all ease;
+      }
+      /*
+      nav ul:nth-child(1) a:hover{
+      background : grey;
+      cursor: pointer ;
+      }*/
+      nav a:not(.tw):not(.fb):hover{
+      background : grey;
+      cursor: pointer ;
+      }
+      nav li {
+      list-style-type : none ;
+      border-bottom : 1px solid green ;
+      }
+      nav ul:nth-child(2) li {
+      border: none ;
+      }
+      a.fb {
+      background: url(./img/fb.png) no-repeat center ;
+      background-size: 80% ;
+      text-indent: -10000px;
+      }
+      
+      a.tw {
+      background: url(./img/tw.png) no-repeat center ;
+      background-size: 80%;
+      text-indent: -10000px;
+      }
+      nav ul:nth-child(2) {
+      flex: 1 ;
+      max-width: 80px;
+      margin: 0 auto ;
+      display: flex ;
+      }
+      nav ul:nth-child(2) li {
+      flex: 1 1 0;
+      }
+      section {
+        background: black;
+      }
+      article {
+      background: white;
+      margin-bottom: 20px ;
+      padding: 10px ;
+      box-sizing:border-box ;
+      }
+      article h2 {
+      text-align: center;
+      }
+      #layout {
+      display: none ;
+      }
+      #newUser {
+        border: 1px solid#DE12E6 ;
+        padding: 20px;
+        display: block;
+      }
+      #newUser input {
+        border: 3px solid black;
+        outline: none;
+        padding: 10px;
+        display: block;
+        width: 100%;
+      }
+      #newUser input, #newUser p {
+        Max-width: 200px;
+        margin: 0 auto;
+        
+      }
+       #newUser p {
+         font-size: 0.7em;
+         margin: 0;
+         padding: 0;
+         color: yellow;
+         transition: all 0.2s linear;
+       }
+      #newUser input.valid {
+        border-color: green;
+      }
+      #newUser input.invalid {
+        border-color: #EC3636;
+        }
+       #newUser input.valid + p {
+         opacity: 0;
+         height: 0;
+         margin-bottom: 10px;
+       }
+        #newUser input.invalid + p {
+          opacity: 1;
+        }
+      
+      div.user-container {
+        display: flex;
+        height: 500px;
+        background:#6ACFE9 ;
+        justify-content: center;
+        align-items: center;
+      }
+      @media screen and (min-width: 560px) {
+      .container {
+      max-width: 960px;
+      width: 90%;
+      margin: 0 auto ;
+      border:  1px solid white ;
+      border-top: none;
+      border-bottom: none;
+      }
+      nav ul {
+      display : flex ;
+      justify-content : space-between ;
+      }
+      nav {
+      display: flex ;
+      justify-content: space-between ;
+      }
+      nav li {
+      border : none ;
+      flex: 1;
+      text-align : Center ;
+      }
+      nav a {
+      background: inherit ;
+      }
+      nav ul:nth-child(2) {
+      margin: 0 ;
+      }
+      section {
+      display: flex ;
+      flex-wrap: wrap ;
+      justify-content: space-between ;
+      }
+      article {
+      flex: 0 0 32%;
+      transition: flex 0.1s linear;
+      }
+      .stack {
+      flex: 0 0 100%;
+      }
+      #layout {
+      display: flex ;
+      justify-content: flex-start ;
+      }
+      #layout a {
+      flex: 0  100px ;
+      background: grey;
+      color: white ;
+      text-decoration: none ;
+      margin: 10px ;
+      margin-left: 0;
+      transition: all 0.2 ease;
+      }
+      #layout a:hover {
+      cursor: pointer ;
+      color: grey ;
+      background : white ;
+      }
+      }
+    </style>
+  </head>
+  <body>
+  <div class="container
+  ">
+    <nav>
+      <ul>
+        <li><a href="#">contact</a></li>
+        <li><a href="#">about</a></li>
+        <li><a href="#">gallery</a></li>
+        <li><a href="#">home</a></li>
+        <li><a href="#">style</a></li>
+        <li><a href="#">news</a></li>
+      </ul>
+      <ul>
+        <li><a class="fb" href="https://dawahnigeria.com/dawahcast/l/126696" target="_blank">fattychat</a></li>
+        <li><a class="tw" href="https://dawahnigeria.com/dawahcast/l/126685" target="_blank">facebook</a></li>
+      </ul>
+    </nav>
+    <!--div class="flex-container">
+      <div class="flex-item one"></div>
+      <div class="flex-item two"></div>
+      <div class="flex-item three"></div>
+    </div -->
+   
+   <div class="user-container">
+   <form id="newUser">
+     <input type="text" name="username" placeholder="username" autofocus/>
+     <p>Username must be alphanumeric between 5-12 characters. Eg fattylee007</p>
+     <input type="text" name="email" placeholder="email" />
+     <p>invalid email</p>
+     <input type="text" name="phone" placeholder="phone" />
+     <p>invalid phone no. Must be 11 digit and must start with 08/07/09 </p>  
+     <input type="password" name="password" placeholder="password" />
+     <p>invalid password: may contains a-z0-9@_- and length of 8-15 characters</p>
+   </form>
+   </div>
+   
+   <span id="layout">
+  <a href="#!" >Stack</a>
+  <a href="#!" >Grid</a>
+  </span>
+   <section>
+   	<article>
+   	<h2>article 1</h2>
+   	<div>مَآ أَصَابَ مِن مُّصِيبَةٖ فِي ٱلۡأَرۡضِ وَلَا فِيٓ أَنفُسِكُمۡ إِلَّا فِي كِتَٰبٖ مِّن قَبۡلِ أَن نَّبۡرَأَهَآۚ إِنَّ ذَٰلِكَ عَلَى ٱللَّهِ يَسِيرٞ
+   	
+   	(Muhsin Khan and Taqi-ud-Din al-Hilali)
+   	No calamity befalls on the earth or in yourselves but is inscribed in the Book of Decrees (Al-Lauh Al-Mahfuz), before We bring it into existence. Verily, that is easy for Allah.
+   	
+   	-Sura Al-Hadid, Ayah 22
+   	
+   	لِّكَيۡلَا تَأۡسَوۡاْ عَلَىٰ مَا فَاتَكُمۡ وَلَا تَفۡرَحُواْ بِمَآ ءَاتَىٰكُمۡۗ وَٱللَّهُ لَا يُحِبُّ كُلَّ مُخۡتَالٖ فَخُورٍ
+   	
+   	
+   	In order that you may not be sad over matters that you fail to get, nor rejoice because of that which has been given to you. And Allah likes not prideful boasters.
+   	
+   	-Ayah 23
+   	يُسَبِّحُ لِلَّهِ مَا فِي ٱلسَّمَٰوَٰتِ وَمَا فِي ٱلۡأَرۡضِ ٱلۡمَلِكِ ٱلۡقُدُّوسِ ٱلۡعَزِيزِ ٱلۡحَكِيمِ
+   	
+   	(Muhsin Khan and Taqi-ud-Din al-Hilali)
+   	Whatsoever is in the heavens and whatsoever is on the earth glorifies Allah, the King (of everything), the Holy, the All-Mighty, the All-Wise.
+   	
+   	-Sura Al-Jumu'ah, Ayah 1</div>
+   	</article>
+   	<article>
+   	<h2>article 2</h2>
+   	<div>مَآ أَصَابَ مِن مُّصِيبَةٖ فِي ٱلۡأَرۡضِ وَلَا فِيٓ أَنفُسِكُمۡ إِلَّا فِي كِتَٰبٖ مِّن قَبۡلِ أَن نَّبۡرَأَهَآۚ إِنَّ ذَٰلِكَ عَلَى ٱللَّهِ يَسِيرٞ
+   	
+   	(Muhsin Khan and Taqi-ud-Din al-Hilali)
+   	No calamity befalls on the earth or in yourselves but is inscribed in the Book of Decrees (Al-Lauh Al-Mahfuz), before We bring it into existence. Verily, that is easy for Allah.
+   	
+   	-Sura Al-Hadid, Ayah 22
+   	
+   	لِّكَيۡلَا تَأۡسَوۡاْ عَلَىٰ مَا فَاتَكُمۡ وَلَا تَفۡرَحُواْ بِمَآ ءَاتَىٰكُمۡۗ وَٱللَّهُ لَا يُحِبُّ كُلَّ مُخۡتَالٖ فَخُورٍ
+   	
+   	
+   	In order that you may not be sad over matters that you fail to get, nor rejoice because of that which has been given to you. And Allah likes not prideful boasters.
+   	
+   	-Ayah 23</div>
+   	</article>
+   	<article>
+   	<h2>article 3</h2>
+   	<div>مَآ أَصَابَ مِن مُّصِيبَةٖ فِي ٱلۡأَرۡضِ وَلَا فِيٓ أَنفُسِكُمۡ إِلَّا فِي كِتَٰبٖ مِّن قَبۡلِ أَن نَّبۡرَأَهَآۚ إِنَّ ذَٰلِكَ عَلَى ٱللَّهِ يَسِيرٞ
+   	
+   	(Muhsin Khan and Taqi-ud-Din al-Hilali)
+   	No calamity befalls on the earth or in yourselves but is inscribed in the Book of Decrees (Al-Lauh Al-Mahfuz), before We bring it into existence. Verily, that is easy for Allah.
+   	
+   	-Sura Al-Hadid, Ayah 22
+   	
+   	لِّكَيۡلَا تَأۡسَوۡاْ عَلَىٰ مَا فَاتَكُمۡ وَلَا تَفۡرَحُواْ بِمَآ ءَاتَىٰكُمۡۗ وَٱللَّهُ لَا يُحِبُّ كُلَّ مُخۡتَالٖ فَخُورٍ
+   	
+   	
+   	In order that you may not be sad over matters that you fail to get, nor rejoice because of that which has been given to you. And Allah likes not prideful boasters.
+   	
+   	-Ayah 23</div>
+   	</article>
+   	<article>
+   	<h2>article 4</h2>
+   	<div>مَآ أَصَابَ مِن مُّصِيبَةٖ فِي ٱلۡأَرۡضِ وَلَا فِيٓ أَنفُسِكُمۡ إِلَّا فِي كِتَٰبٖ مِّن قَبۡلِ أَن نَّبۡرَأَهَآۚ إِنَّ ذَٰلِكَ عَلَى ٱللَّهِ يَسِيرٞ
+   	
+   	(Muhsin Khan and Taqi-ud-Din al-Hilali)
+   	No calamity befalls on the earth or in yourselves but is inscribed in the Book of Decrees (Al-Lauh Al-Mahfuz), before We bring it into existence. Verily, that is easy for Allah.
+   	
+   	-Sura Al-Hadid, Ayah 22
+   	
+   	لِّكَيۡلَا تَأۡسَوۡاْ عَلَىٰ مَا فَاتَكُمۡ وَلَا تَفۡرَحُواْ بِمَآ ءَاتَىٰكُمۡۗ وَٱللَّهُ لَا يُحِبُّ كُلَّ مُخۡتَالٖ فَخُورٍ
+   	
+   	
+   	In order that you may not be sad over matters that you fail to get, nor rejoice because of that which has been given to you. And Allah likes not prideful boasters.
+   	
+   	-Ayah 23</div>
+   	</article>
+   	<article>
+   	<h2>article 5</h2>
+   	<div>مَآ أَصَابَ مِن مُّصِيبَةٖ فِي ٱلۡأَرۡضِ وَلَا فِيٓ أَنفُسِكُمۡ إِلَّا فِي كِتَٰبٖ مِّن قَبۡلِ أَن نَّبۡرَأَهَآۚ إِنَّ ذَٰلِكَ عَلَى ٱللَّهِ يَسِيرٞ
+   	
+   	(Muhsin Khan and Taqi-ud-Din al-Hilali)
+   	No calamity befalls on the earth or in yourselves but is inscribed in the Book of Decrees (Al-Lauh Al-Mahfuz), before We bring it into existence. Verily, that is easy for Allah.
+   	
+   	-Sura Al-Hadid, Ayah 22
+   	
+   	لِّكَيۡلَا تَأۡسَوۡاْ عَلَىٰ مَا فَاتَكُمۡ وَلَا تَفۡرَحُواْ بِمَآ ءَاتَىٰكُمۡۗ وَٱللَّهُ لَا يُحِبُّ كُلَّ مُخۡتَالٖ فَخُورٍ
+   	
+   	
+   	In order that you may not be sad over matters that you fail to get, nor rejoice because of that which has been given to you. And Allah likes not prideful boasters.
+   	
+   	-Ayah 23
+   	يُسَبِّحُ لِلَّهِ مَا فِي ٱلسَّمَٰوَٰتِ وَمَا فِي ٱلۡأَرۡضِ ٱلۡمَلِكِ ٱلۡقُدُّوسِ ٱلۡعَزِيزِ ٱلۡحَكِيمِ
+   	
+   	(Muhsin Khan and Taqi-ud-Din al-Hilali)
+   	Whatsoever is in the heavens and whatsoever is on the earth glorifies Allah, the King (of everything), the Holy, the All-Mighty, the All-Wise.
+   	
+   	-Sura Al-Jumu'ah, Ayah 1
+   	</div>
+   	</article>
+   	<article>
+   	<h2>article 6</h2>
+   	<div>مَآ أَصَابَ مِن مُّصِيبَةٖ فِي ٱلۡأَرۡضِ وَلَا فِيٓ أَنفُسِكُمۡ إِلَّا فِي كِتَٰبٖ مِّن قَبۡلِ أَن نَّبۡرَأَهَآۚ إِنَّ ذَٰلِكَ عَلَى ٱللَّهِ يَسِيرٞ
+   	
+   	(Muhsin Khan and Taqi-ud-Din al-Hilali)
+   	No calamity befalls on the earth or in yourselves but is inscribed in the Book of Decrees (Al-Lauh Al-Mahfuz), before We bring it into existence. Verily, that is easy for Allah.
+   	
+   	-Sura Al-Hadid, Ayah 22
+   	
+   	لِّكَيۡلَا تَأۡسَوۡاْ عَلَىٰ مَا فَاتَكُمۡ وَلَا تَفۡرَحُواْ بِمَآ ءَاتَىٰكُمۡۗ وَٱللَّهُ لَا يُحِبُّ كُلَّ مُخۡتَالٖ فَخُورٍ
+   	
+   	
+   	In order that you may not be sad over matters that you fail to get, nor rejoice because of that which has been given to you. And Allah likes not prideful boasters.
+   	
+   	-Ayah 23</div>
+   	</article>
+   	<article>
+   	<h2>article 7</h2>
+   	<div>مَآ أَصَابَ مِن مُّصِيبَةٖ فِي ٱلۡأَرۡضِ وَلَا فِيٓ أَنفُسِكُمۡ إِلَّا فِي كِتَٰبٖ مِّن قَبۡلِ أَن نَّبۡرَأَهَآۚ إِنَّ ذَٰلِكَ عَلَى ٱللَّهِ يَسِيرٞ
+   	
+   	(Muhsin Khan and Taqi-ud-Din al-Hilali)
+   	No calamity befalls on the earth or in yourselves but is inscribed in the Book of Decrees (Al-Lauh Al-Mahfuz), before We bring it into existence. Verily, that is easy for Allah.
+   	
+   	-Sura Al-Hadid, Ayah 22
+   	
+   	لِّكَيۡلَا تَأۡسَوۡاْ عَلَىٰ مَا فَاتَكُمۡ وَلَا تَفۡرَحُواْ بِمَآ ءَاتَىٰكُمۡۗ وَٱللَّهُ لَا يُحِبُّ كُلَّ مُخۡتَالٖ فَخُورٍ
+   	
+   	
+   	In order that you may not be sad over matters that you fail to get, nor rejoice because of that which has been given to you. And Allah likes not prideful boasters.
+   	
+   	-Ayah 23</div>
+   	</article>
+  </section>
+   </div>
+  
+  <script type="text/javascript">
+
+const stack = document.querySelector("#layout a:first-child");
+stack. addEventListener("click", function(){
+ // alert(536 )
+document. querySelectorAll("article"). forEach ( a => a. classList.add("stack"));
+});
+const grid = document.querySelector("#layout a:last-child");
+grid. addEventListener("click", function(){
+document. querySelectorAll("article"). forEach ( a => a. classList.remove("stack"));
+});
+
+//regex patterns
+const patterns = {
+  username: /^[a-z0-9]{5,12}$/i,
+  email: /^[\w\.-]{2,}@[a-z-]{1,}\.[a-z]{2,5}(\.[a-z]{2,5})?$/i,
+  phone: /^0(7|8|9)\d{9}$/, 
+  password: /^[\w@-]{8,15}$/,
+};
+
+const validate = (field, regex) => {
+  const res =  patterns[regex].test(field.value.trim());
+    console.log('validate:', field.value.trim(), patterns[regex], res);
+    return res;
+};
+
+document.querySelectorAll('#newUser input').forEach( input => {
+  input.addEventListener('keyup', (event) => {
+    console.log(event.target.value, event.target.attributes.name.value);
+    
+    if(validate(event.target, event.target.attributes.name.value)) {
+      input.className = 'valid';
+    }
+    else {
+      input.className = 'invalid';
+    }
+  })
+})
+  </script>
+  </body>
+</html>
