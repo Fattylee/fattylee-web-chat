@@ -3,6 +3,7 @@ const path = require('path');
 const socketIO = require('socket.io');
 const http = require('http');
 const { generateMessage, generateLocationMessage } = require('./utils/generators');
+const { isRealString } = require('./utils/validation');
 
 const app = express();
 const server = http.createServer(app);
@@ -18,9 +19,6 @@ io.on('connection', (socket) => {
     console.log('client disconected');
   });
   
-  socket.emit('newMessage', generateMessage('Admin', 'welcome to the chat room'));
-  socket.broadcast.emit('newMessage', generateMessage('Admin', 'a new user just joined the chat room'));
-  
   socket.on('createMessage', ({from, text}, receipt) => {
     io.emit('newMessage', generateMessage(from, text));
     if(receipt)
@@ -31,6 +29,17 @@ io.on('connection', (socket) => {
     io.emit('newLocationMessage', generateLocationMessage('User',latitude, longitude));
   });
   
+  socket.on('join', ({name, room}, receipt) => {
+    if(!isRealString(name) || !isRealString(room)) {
+      receipt('name and/or room is required');
+    }
+    else {
+      receipt();
+      socket.join(room.toLowerCase());
+      socket.emit('newMessage', generateMessage('Admin', `${name}, welcome to the chat room`));
+  socket.broadcast.to(room).emit('newMessage', generateMessage('Admin', `${name} just joined the chat room`));
+    }
+  })
 });
 
 const port = process.env.PORT || 5000;

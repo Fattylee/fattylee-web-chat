@@ -1,6 +1,14 @@
 const socket = io();
 socket.on('connect', () => {
-  console.log('connected to server');
+  socket.emit('join', $.deparam(window.location.search), (err) => {
+    if(err) {
+      alert(err);
+      window.location.href = '/';
+    }
+    else {
+     console.log('welcome '); 
+    }
+  })
 });
 
 socket.on('disconnect', () => {
@@ -8,7 +16,7 @@ socket.on('disconnect', () => {
 });
 
 
-    
+
 const form = document.querySelector('#chat');
 const textBox = document.querySelector('#chat input');
 const ol = document.querySelector('#messages');

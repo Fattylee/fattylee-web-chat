@@ -22,3 +22,4 @@ describe('generateLocationMessage', () => {
     expect(result).toMatchObject({from, url});
   }); // end it
 }); // end generateLocationMessage
+
