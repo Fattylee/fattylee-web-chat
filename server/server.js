@@ -34,10 +34,11 @@ io.on('connection', (socket) => {
       receipt('name and/or room is required');
     }
     else {
-      receipt();
+      
       socket.join(room.toLowerCase());
       socket.emit('newMessage', generateMessage('Admin', `${name}, welcome to the chat room`));
   socket.broadcast.to(room).emit('newMessage', generateMessage('Admin', `${name} just joined the chat room`));
+      receipt();
     }
   })
 });
