@@ -1,0 +1,78 @@
+{
+  "_from": "eruda-code",
+  "_id": "eruda-code@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-7IE9kxUspxjKNTqt+/MEWaVn5BjzIVhKsNbyRAIS2HRTsWx7wZ2F2IrVFDaDtuPkI7xxPFaXER9E3DWJTM8MvA==",
+  "_location": "/eruda-code",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "eruda-code",
+    "name": "eruda-code",
+    "escapedName": "eruda-code",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/eruda-code/-/eruda-code-1.0.0.tgz",
+  "_shasum": "8539899f067c3cc43bec312b10292da581f2f835",
+  "_spec": "eruda-code",
+  "_where": "/data/data/com.termux/files/home",
+  "author": {
+    "name": "redhoodsu"
+  },
+  "bugs": {
+    "url": "https://github.com/liriliri/eruda-code/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Eruda plugin for running JavaScript code",
+  "devDependencies": {
+    "autoprefixer": "^7.2.2",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "codemirror": "^5.33.0",
+    "css-loader": "^0.28.7",
+    "eruda": "^1.4.0",
+    "eslint": "^4.12.1",
+    "handlebars": "^4.0.11",
+    "handlebars-loader": "^1.6.0",
+    "node-sass": "^4.7.2",
+    "postcss": "^6.0.14",
+    "postcss-class-prefix": "^0.3.0",
+    "postcss-loader": "^2.0.9",
+    "sass-loader": "^6.0.6",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
+  },
+  "eustia": {
+    "files": "src/*.js",
+    "output": "src/util.js",
+    "format": "es"
+  },
+  "homepage": "https://github.com/liriliri/eruda-code#readme",
+  "keywords": [
+    "eruda",
+    "plugin"
+  ],
+  "license": "MIT",
+  "main": "eruda-code.js",
+  "name": "eruda-code",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liriliri/eruda-code.git"
+  },
+  "scripts": {
+    "build": "webpack && webpack -p",
+    "ci": "npm run lint && npm run build",
+    "dev": "webpack-dev-server --host 0.0.0.0",
+    "lint": "eslint src/**/*.js"
+  },
+  "version": "1.0.0"
+}

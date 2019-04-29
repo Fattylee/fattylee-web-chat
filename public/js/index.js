@@ -6,9 +6,15 @@ socket.on('connect', () => {
       window.location.href = '/';
     }
     else {
-     console.log('welcome '); 
+     console.log('welcome ');
     }
-  })
+  });
+});
+
+socket.on('updateUserList', (users) => {
+ 
+  const people = users.map(user => `<li>${user}</li>` ).join('');
+  $('#users').html($('<ol>').html(people));
 });
 
 socket.on('disconnect', () => {
