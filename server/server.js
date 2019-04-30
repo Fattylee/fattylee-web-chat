@@ -18,16 +18,23 @@ app.use('/', express.static(path.join(__dirname, '..', 'public')));
 
 
 io.on('connection', (socket) => {
-  console.log('new user conected!', socket.id);
   
-  socket.on('createMessage', ({from, text}, receipt) => {
-    io.emit('newMessage', generateMessage(from, text));
+  socket.on('createMessage', ({text}, receipt) => {
+    const user = users.getUser(socket.id);
+    if(user && isRealString(text)) {
+      io.to(user.room).emit('newMessage', generateMessage(user.name, text));
     if(receipt)
     receipt();
+    }
+    
   });
   
   socket.on('createLocation', ({latitude, longitude}) => {
-    io.emit('newLocationMessage', generateLocationMessage('User',latitude, longitude));
+    const user = users.getUser(socket.id);
+    if(user) {
+      io.to(user.room).emit('newLocationMessage', generateLocationMessage(user.name, latitude, longitude));
+    }
+    
   });
   
   socket.on('join', ({name, room}, receipt) => {

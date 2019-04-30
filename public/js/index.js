@@ -55,7 +55,6 @@ form.addEventListener('submit', (event) => {
   if(!textBox.value.trim()) return;
   
   socket.emit('createMessage', {
-      from: 'User',
       text: textBox.value,
     }, () => {
       textBox.value = '';
